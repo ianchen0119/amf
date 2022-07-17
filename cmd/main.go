@@ -10,6 +10,7 @@ import (
 	"github.com/urfave/cli"
 
 	"github.com/free5gc/amf/internal/logger"
+	"github.com/free5gc/amf/internal/monitor"
 	"github.com/free5gc/amf/internal/util"
 	"github.com/free5gc/amf/pkg/service"
 	"github.com/free5gc/util/version"
@@ -60,6 +61,8 @@ func action(c *cli.Context) error {
 	logger.AppLog.Infoln(c.App.Name)
 	logger.AppLog.Infoln("AMF version: ", version.GetVersion())
 
+	regisMetric := monitor.NewRegistrationCollector()
+	go regisMetric.Start()
 	AMF.Start()
 
 	return nil

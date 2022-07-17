@@ -17,6 +17,7 @@ import (
 
 	"github.com/free5gc/amf/internal/context"
 	gmm_message "github.com/free5gc/amf/internal/gmm/message"
+	"github.com/free5gc/amf/internal/monitor"
 	ngap_message "github.com/free5gc/amf/internal/ngap/message"
 	"github.com/free5gc/amf/internal/sbi/consumer"
 	"github.com/free5gc/amf/internal/sbi/producer/callback"
@@ -571,6 +572,7 @@ func IdentityVerification(ue *context.AmfUe) bool {
 
 func HandleInitialRegistration(ue *context.AmfUe, anType models.AccessType) error {
 	ue.GmmLog.Infoln("Handle InitialRegistration")
+	monitor.IncAmountOfReceivedRegistration()
 
 	amfSelf := context.AMF_Self()
 
@@ -715,6 +717,7 @@ func HandleInitialRegistration(ue *context.AmfUe, anType models.AccessType) erro
 
 	if anType == models.AccessType__3_GPP_ACCESS {
 		gmm_message.SendRegistrationAccept(ue, anType, nil, nil, nil, nil, nil)
+		monitor.IncAmountOfSuccessRegistration()
 	} else {
 		// TS 23.502 4.12.2.2 10a ~ 13: if non-3gpp, AMF should send initial context setup request to N3IWF first,
 		// and send registration accept after receiving initial context setup response

@@ -75,6 +75,10 @@ type AMFContext struct {
 	T3565Cfg factory.TimerValue
 	T3570Cfg factory.TimerValue
 	Locality string
+	// for monitor service
+	Lock         sync.Mutex
+	RegisSuccess float64
+	RegisTry     float64
 }
 
 type AMFContextEventSubscription struct {

@@ -17,6 +17,7 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826
+	github.com/prometheus/client_golang v1.12.2
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli v1.22.5
 	gopkg.in/yaml.v2 v2.4.0
