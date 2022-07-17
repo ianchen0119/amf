@@ -27,7 +27,7 @@ func (collector *regisCollector) Describe(ch chan<- *prometheus.Desc) {
 func (collector *regisCollector) Collect(ch chan<- prometheus.Metric) {
 	regisSuccess := GetAmountOfSuccessRegistration()
 	regisTry := GetAmountOfReceivedRegistration()
-	prometheus.MustNewConstMetric(collector.regisDetail, prometheus.CounterValue, regisSuccess/regisTry)
+	ch <- prometheus.MustNewConstMetric(collector.regisDetail, prometheus.CounterValue, regisSuccess/regisTry)
 }
 
 func (collector *regisCollector) Start() {
